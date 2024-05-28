@@ -1,8 +1,8 @@
-import { Entity } from "@/core/entities/entity";
-import { UniqueEntityID } from "@/core/entities/unique-entity-id";
+import { Entity } from '@/core/entities/entity'
+import { UniqueEntityID } from '@/core/entities/unique-entity-id'
 
 interface StudentProps {
-  name: string;
+  name: string
 }
 
 export class Student extends Entity<StudentProps> {
@@ -11,9 +11,9 @@ export class Student extends Entity<StudentProps> {
       {
         ...props,
       },
-      id
-    );
+      id,
+    )
 
-    return student;
+    return student
   }
 }

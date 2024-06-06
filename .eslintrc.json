@@ -5,7 +5,8 @@
   ],
   "rules": {
     "no-useless-constructor": "off",
-    "no-new": "off"
+    "no-new": "off",
+    "quotes": ["error", "single"]
   },
   "env": {
     "vitest-globals/env": true

@@ -1,4 +1,4 @@
-import { Question } from "@/domain/forum/enterprise/entities/question";
+import { Question } from "../../interprise/entities/question";
 
 export interface QuestionsRepository {
   findById(id: string): Promise<Question | null>;

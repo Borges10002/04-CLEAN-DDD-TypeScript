@@ -1,6 +1,6 @@
 {
   "rules": {
-    "quotes": ["error", "single"],
+    "quotes": ["error", "double"],
     "no-useless-constructor": "off",
     "no-new": "off"
   },

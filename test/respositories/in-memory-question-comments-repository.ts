@@ -5,21 +5,37 @@ import { QuestionComment } from "@/domain/forum/interprise/entities/question-com
 export class InMemoryQuestionCommentsRepository
   implements QuestionCommentsRepository
 {
-  findById(id: string): Promise<any> {
-    throw new Error("Method not implemented.");
-  }
-  findManyByQuestionId(
-    questionId: string,
-    params: PaginationParams,
-  ): Promise<QuestionComment[]> {
-    throw new Error("Method not implemented.");
-  }
-  delete(questionComment: QuestionComment): Promise<void> {
-    throw new Error("Method not implemented.");
-  }
   public items: QuestionComment[] = [];
+
+  async findById(id: string) {
+    const questionComment = this.items.find(
+      (item) => item.id.toString() === id,
+    );
+
+    if (!questionComment) {
+      return null;
+    }
+
+    return questionComment;
+  }
+
+  async findManyByQuestionId(questionId: string, { page }: PaginationParams) {
+    const questionComments = this.items
+      .filter((item) => item.questionId.toString() === questionId)
+      .slice((page - 1) * 20, page * 20);
+
+    return questionComments;
+  }
 
   async create(questionComment: QuestionComment) {
     this.items.push(questionComment);
+  }
+
+  async delete(questionComment: QuestionComment) {
+    const itemIndex = this.items.findIndex(
+      (item) => item.id === questionComment.id,
+    );
+
+    this.items.splice(itemIndex, 1);
   }
 }

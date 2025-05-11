@@ -9,7 +9,9 @@ interface GetQuestionBySlugUseCaseRequest {
 
 type GetQuestionBySlugUseCaseResponse = Either<
   ResourceNotFoundError,
-  { question: Question }
+  {
+    question: Question;
+  }
 >;
 
 export class GetQuestionBySlugUseCase {
@@ -24,6 +26,8 @@ export class GetQuestionBySlugUseCase {
       return left(new ResourceNotFoundError());
     }
 
-    return right({ question });
+    return right({
+      question,
+    });
   }
 }

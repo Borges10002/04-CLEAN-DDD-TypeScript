@@ -2,6 +2,7 @@ import { expect } from "vitest";
 
 import { InMemoryQuestionsRepository } from "test/respositories/in-memory-questions-repository";
 import { CreateQuestionUseCase } from "./create-question";
+import { UniqueEntityID } from "@/core/entities/unique-entity-id";
 
 let inMemoryQuestionsRepository: InMemoryQuestionsRepository;
 let sut: CreateQuestionUseCase;
@@ -17,6 +18,7 @@ describe("Create Question", () => {
       authorId: "1",
       title: "Nova pergunta",
       content: "Conteúdo da pergunta",
+      attachmentsIds: ["1", "2"],
     });
 
     expect(result.value?.question.id).toBeTruthy();
@@ -27,5 +29,9 @@ describe("Create Question", () => {
     expect(inMemoryQuestionsRepository.items[0]).toEqual(
       result.value?.question,
     );
+    expect(inMemoryQuestionsRepository.items[0].attachments).toEqual([
+      expect.objectContaining({ attachmentId: new UniqueEntityID("1") }),
+      expect.objectContaining({ attachmentId: new UniqueEntityID("2") }),
+    ]);
   });
 });

@@ -1,15 +1,21 @@
 import { expect } from "vitest";
 
+import { UniqueEntityID } from "@/core/entities/unique-entity-id";
+import { InMemoryAnswerAttachmentsRepository } from "test/respositories/in-memory-answer-attachments-repository";
 import { InMemoryAnswersRepository } from "test/respositories/in-memory-answers-repository";
 import { AnswerQuestionUseCase } from "./answer-question";
-import { UniqueEntityID } from "@/core/entities/unique-entity-id";
 
+let inMemoryAnswerAttachmentsRepository: InMemoryAnswerAttachmentsRepository;
 let inMemoryAnswersRepository: InMemoryAnswersRepository;
 let sut: AnswerQuestionUseCase;
 
 describe("Create Answer", () => {
   beforeEach(() => {
-    inMemoryAnswersRepository = new InMemoryAnswersRepository();
+    inMemoryAnswerAttachmentsRepository =
+      new InMemoryAnswerAttachmentsRepository();
+    inMemoryAnswersRepository = new InMemoryAnswersRepository(
+      inMemoryAnswerAttachmentsRepository,
+    );
     sut = new AnswerQuestionUseCase(inMemoryAnswersRepository);
   });
   it("should be able to create an answer", async () => {

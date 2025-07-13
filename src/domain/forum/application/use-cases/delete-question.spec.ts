@@ -3,7 +3,7 @@ import { makeQuestion } from "test/factories/make-question";
 import { InMemoryQuestionAttachmentsRepository } from "test/respositories/in-memory-question-attachments-repository";
 import { InMemoryQuestionsRepository } from "test/respositories/in-memory-questions-repository";
 import { DeleteQuestionUseCase } from "./delete-question";
-import { NotAllowedError } from "./errors/not-allowed-error";
+import { NotAllowedError } from "../../../../core/errors/errors/not-allowed-error";
 import { makeQuestionAttachment } from "test/factories/make-question-attachments";
 
 let inMemoryQuestionsRepository: InMemoryQuestionsRepository;
